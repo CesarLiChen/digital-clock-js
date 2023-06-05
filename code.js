@@ -1,5 +1,6 @@
 let currentDateTime;
 
+updateTime(); // Updates immediately without waiting for first 1000ms.
 setInterval(updateTime, 1000);
 
 function updateTime(){
@@ -9,8 +10,10 @@ function updateTime(){
     const secs = formatUnitTime(currentDateTime.getSeconds());
 
     // String interpolation with template literals
-    const currentTimeString = `${hours}:${mins}:${secs}`;
-    console.log(currentTimeString);
+    const currentTimeString = `${hours}${mins}${secs}`;
+    document.querySelectorAll(".digit").forEach((digit, index) => {
+        digit.textContent = currentTimeString.charAt(index);
+    });
 }
 
 function formatUnitTime(unitOfTime) {
