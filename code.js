@@ -1,4 +1,6 @@
 let currentDateTime;
+let is24Hour = true;
+const timeConventionChangeButton = document.querySelector(".button");
 
 updateTime(); // Updates immediately without waiting for first 1000ms.
 setInterval(updateTime, 1000);
@@ -19,3 +21,7 @@ function updateTime(){
 function formatUnitTime(unitOfTime) {
     return unitOfTime < 10 ? `0${unitOfTime}` : `${unitOfTime}`;
 }
+
+timeConventionChangeButton.addEventListener("click", () => {
+    is24Hour = !is24Hour;
+});
