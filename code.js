@@ -1,6 +1,7 @@
 let currentDateTime;
 let is24Hour = true;
 const timeConventionChangeButton = document.querySelector(".button");
+const timeConventionDisplay = document.querySelector(".hr");
 
 updateTime(); // Updates immediately without waiting for first 1000ms.
 setInterval(updateTime, 1000);
@@ -24,4 +25,5 @@ function formatUnitTime(unitOfTime) {
 
 timeConventionChangeButton.addEventListener("click", () => {
     is24Hour = !is24Hour;
+    timeConventionDisplay.textContent = is24Hour ? "24" : (currentDateTime.getHours > 11 ? "PM" : "AM");
 });
