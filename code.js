@@ -23,6 +23,16 @@ function formatUnitTime(unitOfTime) {
     return unitOfTime < 10 ? `0${unitOfTime}` : `${unitOfTime}`;
 }
 
+function convert24HourToAMPM(hour) {
+    if(hour > 12) {
+        return hour - 12;
+    } else if(hour === 0) {
+        return 12;
+    } else {
+        return hour;
+    }
+}
+
 timeConventionChangeButton.addEventListener("click", () => {
     is24Hour = !is24Hour;
     timeConventionDisplay.textContent = is24Hour ? "24" : (currentDateTime.getHours > 11 ? "PM" : "AM");
