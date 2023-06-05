@@ -8,7 +8,7 @@ setInterval(updateTime, 1000);
 
 function updateTime(){
     currentDateTime = new Date();
-    const hours = formatUnitTime(currentDateTime.getHours());
+    const hours = formatUnitTime(getCorrectHour(currentDateTime.getHours()));
     const mins = formatUnitTime(currentDateTime.getMinutes());
     const secs = formatUnitTime(currentDateTime.getSeconds());
 
@@ -21,6 +21,14 @@ function updateTime(){
 
 function formatUnitTime(unitOfTime) {
     return unitOfTime < 10 ? `0${unitOfTime}` : `${unitOfTime}`;
+}
+
+function getCorrectHour(hour) {
+    if(is24Hour) {
+        return hour;
+    } else {
+        return convert24HourToAMPM(hour);
+    }
 }
 
 function convert24HourToAMPM(hour) {
@@ -36,4 +44,5 @@ function convert24HourToAMPM(hour) {
 timeConventionChangeButton.addEventListener("click", () => {
     is24Hour = !is24Hour;
     timeConventionDisplay.textContent = is24Hour ? "24" : (currentDateTime.getHours > 11 ? "PM" : "AM");
+    updateTime();
 });
